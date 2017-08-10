@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import {MdSnackBar} from '@angular/material';
 import { Authentication } from '../service/authentication';
 
 
@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: Authentication,
+        public snackBar :MdSnackBar
         ) { }
 
     ngOnInit() {
@@ -32,13 +33,17 @@ export class LoginComponent implements OnInit {
     login() {
         //this.loading = true;
         if (localStorage.getItem('currentUser') != this.model.username) {
-          console.log('Please Register first');
+         // console.log('Please Register first');
+          this.snackBar.open('Please Register first', 'Undo');
           this.router.navigate(['/login'])
+
         }else if( localStorage.getItem('password') != this.model.password){
            console.log('Check Password');
+           this.snackBar.open('Check Password', 'Undo');
            this.router.navigate(['/login']);
         } else {
           localStorage.setItem("statut", "logged");
+          this.snackBar.open('Login with success', 'Undo');
         this.authenticationService.login(this.model.username, this.model.password);
          //console.log(localStorage.getItem("currentUser"))   
         this.router.navigate([this.returnUrl]);

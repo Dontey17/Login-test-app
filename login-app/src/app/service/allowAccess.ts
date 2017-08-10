@@ -13,7 +13,7 @@ export class AllowAccess implements CanActivate {
         }
 
         // not logged in so redirect to login page with the return url
-        console.log('you need to be loged in to acces home')
+        console.log('you need to login to acces this')
         this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
         return false;
     }

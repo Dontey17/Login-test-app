@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-//import {MdSnackBar} from '@angular/material';
+import {MdSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +14,7 @@ export class RegisterComponent  {
 
     constructor(
         private router: Router, 
-       // private snackBar: MdSnackBar
+        private snackBar: MdSnackBar
         ) { }
 
     
@@ -23,9 +23,11 @@ export class RegisterComponent  {
         ;
         if (localStorage.getItem("currentUser")== this.model.username) {
             console.log('user already exists'!);
+            this.snackBar.open('User already exists', 'Undo');
             this.router.navigate(['/register'])
         } else{
         console.log('registred');
+        this.snackBar.open('Registred with success, you can login now', 'Undo');
         localStorage.setItem('currentUser',this.model.username);
         localStorage.setItem('password',this.model.password);
 
@@ -33,18 +35,5 @@ export class RegisterComponent  {
         this.router.navigate(['/login']);
         }
     	
-
-        //this.snackBar.open('Message archived');
-        /*this.loading = true;
-        this.userService.create(this.model)
-            .subscribe(
-                data => {
-                    this.alertService.success('Registration successful', true);
-                    this.router.navigate(['/login']);
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                });*/
     }
 }

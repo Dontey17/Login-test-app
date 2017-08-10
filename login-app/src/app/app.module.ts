@@ -11,20 +11,28 @@ import {AllowAccess} from './service/allowAccess';
 import { FormsModule }    from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {MdSnackBar} from '@angular/material';
-//import {OVERLAY_PROVIDERS} from "@angular/material";
+import {MaterialModule} from "@angular/material";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
     routing,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MaterialModule,
+    BrowserAnimationsModule
   ],
   providers: [
   Authentication,
